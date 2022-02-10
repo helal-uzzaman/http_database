@@ -6,21 +6,18 @@ import 'package:http/http.dart' as http;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  void saveData() {
+  void saveData() async {
     var url = Uri.parse(
         'https://database-http-4d0d2-default-rtdb.firebaseio.com/data.json');
-    var response = http
-        .post(url,
-            body: jsonEncode({
-              'name': 'Hasib',
-              'age': 12,
-              'sex': 'male',
-              'address': 'fake address..',
-              'isTrue': false,
-            }))
-        .then((value) => {
-              print(value.headers),
-            });
+    var response = await http.post(url,
+        body: jsonEncode({
+          'name': 'Hasib',
+          'age': 12,
+          'sex': 'male',
+          'address': 'fake address..',
+          'isTrue': false,
+        }));
+    print(response.statusCode);
   }
 
   @override
